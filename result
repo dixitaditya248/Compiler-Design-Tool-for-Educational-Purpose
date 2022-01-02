@@ -1,0 +1,6 @@
+echo $1 > fileb
+val=`cut -d "." -f 1 fileb`
+t="t"
+f="final"
+cd $val
+cat $val$t$f.py

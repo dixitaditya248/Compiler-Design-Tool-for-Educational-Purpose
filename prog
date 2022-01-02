@@ -1,0 +1,18 @@
+echo $1 > fileb
+val=`cut -d "." -f 1 fileb`
+
+if [ ! -d "$val" ]
+then
+mkdir $val
+fi
+
+cp $1 $val/
+cp finals.py $val/
+cd $val
+
+python ../tokens.py $1
+t="t"
+dot -Grankdir=LR -Tjpg $val$t.dot -o $val$t.jpg
+display $val$t.jpg
+
+

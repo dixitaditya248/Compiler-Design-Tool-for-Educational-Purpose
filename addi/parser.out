@@ -1,0 +1,71 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> E
+Rule 1     E -> E PLUS E
+Rule 2     E -> NUM
+
+Terminals, with rules where they appear
+
+NUM                  : 2
+PLUS                 : 1
+error                : 
+
+Nonterminals, with rules where they appear
+
+E                    : 1 1 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . E
+    (1) E -> . E PLUS E
+    (2) E -> . NUM
+
+    NUM             shift and go to state 2
+
+    E                              shift and go to state 1
+
+state 1
+
+    (0) S' -> E .
+    (1) E -> E . PLUS E
+
+    PLUS            shift and go to state 3
+
+
+state 2
+
+    (2) E -> NUM .
+
+    PLUS            reduce using rule 2 (E -> NUM .)
+    $end            reduce using rule 2 (E -> NUM .)
+
+
+state 3
+
+    (1) E -> E PLUS . E
+    (1) E -> . E PLUS E
+    (2) E -> . NUM
+
+    NUM             shift and go to state 2
+
+    E                              shift and go to state 4
+
+state 4
+
+    (1) E -> E PLUS E .
+    (1) E -> E . PLUS E
+
+  ! shift/reduce conflict for PLUS resolved as shift
+    $end            reduce using rule 1 (E -> E PLUS E .)
+    PLUS            shift and go to state 3
+
+  ! PLUS            [ reduce using rule 1 (E -> E PLUS E .) ]
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 4 resolved as shift

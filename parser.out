@@ -1,0 +1,126 @@
+Created by PLY version 3.7 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> E E E
+Rule 2     S -> E E E E
+Rule 3     E -> ID
+Rule 4     E -> RULE
+Rule 5     E -> BODY
+
+Terminals, with rules where they appear
+
+BODY                 : 5
+ID                   : 3
+RULE                 : 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+E                    : 1 1 1 2 2 2 2
+S                    : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . E E E
+    (2) S -> . E E E E
+    (3) E -> . ID
+    (4) E -> . RULE
+    (5) E -> . BODY
+
+    ID              shift and go to state 4
+    RULE            shift and go to state 5
+    BODY            shift and go to state 1
+
+    S                              shift and go to state 2
+    E                              shift and go to state 3
+
+state 1
+
+    (5) E -> BODY .
+
+    $end            reduce using rule 5 (E -> BODY .)
+    ID              reduce using rule 5 (E -> BODY .)
+    RULE            reduce using rule 5 (E -> BODY .)
+    BODY            reduce using rule 5 (E -> BODY .)
+
+
+state 2
+
+    (0) S' -> S .
+
+
+
+state 3
+
+    (1) S -> E . E E
+    (2) S -> E . E E E
+    (3) E -> . ID
+    (4) E -> . RULE
+    (5) E -> . BODY
+
+    ID              shift and go to state 4
+    RULE            shift and go to state 5
+    BODY            shift and go to state 1
+
+    E                              shift and go to state 6
+
+state 4
+
+    (3) E -> ID .
+
+    $end            reduce using rule 3 (E -> ID .)
+    ID              reduce using rule 3 (E -> ID .)
+    RULE            reduce using rule 3 (E -> ID .)
+    BODY            reduce using rule 3 (E -> ID .)
+
+
+state 5
+
+    (4) E -> RULE .
+
+    $end            reduce using rule 4 (E -> RULE .)
+    ID              reduce using rule 4 (E -> RULE .)
+    RULE            reduce using rule 4 (E -> RULE .)
+    BODY            reduce using rule 4 (E -> RULE .)
+
+
+state 6
+
+    (1) S -> E E . E
+    (2) S -> E E . E E
+    (3) E -> . ID
+    (4) E -> . RULE
+    (5) E -> . BODY
+
+    ID              shift and go to state 4
+    RULE            shift and go to state 5
+    BODY            shift and go to state 1
+
+    E                              shift and go to state 7
+
+state 7
+
+    (1) S -> E E E .
+    (2) S -> E E E . E
+    (3) E -> . ID
+    (4) E -> . RULE
+    (5) E -> . BODY
+
+    $end            reduce using rule 1 (S -> E E E .)
+    ID              shift and go to state 4
+    RULE            shift and go to state 5
+    BODY            shift and go to state 1
+
+    E                              shift and go to state 8
+
+state 8
+
+    (2) S -> E E E E .
+
+    $end            reduce using rule 2 (S -> E E E E .)
+

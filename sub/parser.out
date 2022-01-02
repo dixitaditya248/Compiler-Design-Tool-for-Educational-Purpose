@@ -1,0 +1,82 @@
+Created by PLY version 3.7 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> E
+Rule 2     E -> num
+Rule 3     E -> E subs E
+
+Terminals, with rules where they appear
+
+error                : 
+num                  : 2
+subs                 : 3
+
+Nonterminals, with rules where they appear
+
+E                    : 1 3 3
+S                    : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . E
+    (2) E -> . num
+    (3) E -> . E subs E
+
+    num             shift and go to state 2
+
+    S                              shift and go to state 1
+    E                              shift and go to state 3
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (2) E -> num .
+
+    subs            reduce using rule 2 (E -> num .)
+    $end            reduce using rule 2 (E -> num .)
+
+
+state 3
+
+    (1) S -> E .
+    (3) E -> E . subs E
+
+    $end            reduce using rule 1 (S -> E .)
+    subs            shift and go to state 4
+
+
+state 4
+
+    (3) E -> E subs . E
+    (2) E -> . num
+    (3) E -> . E subs E
+
+    num             shift and go to state 2
+
+    E                              shift and go to state 5
+
+state 5
+
+    (3) E -> E subs E .
+    (3) E -> E . subs E
+
+  ! shift/reduce conflict for subs resolved as shift
+    $end            reduce using rule 3 (E -> E subs E .)
+    subs            shift and go to state 4
+
+  ! subs            [ reduce using rule 3 (E -> E subs E .) ]
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for subs in state 5 resolved as shift

@@ -1,0 +1,18 @@
+echo $1 > fileb
+val=`cut -d "." -f 1 fileb`
+
+if [ ! -d "$val" ]
+then
+mkdir $val
+fi
+
+cp $1 $val/
+
+cd $val
+
+python ../grammar1.py $1
+t="g"
+dot -Grankdir=LR -Tjpg $val$t.dot -o $val$t.jpg
+display $val$t.jpg
+
+

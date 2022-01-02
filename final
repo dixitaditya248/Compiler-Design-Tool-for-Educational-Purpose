@@ -1,0 +1,8 @@
+echo $1 > fileb
+val=`cut -d "." -f 1 fileb`
+echo $2 > fileb
+val1=`cut -d "." -f 1 fileb`
+t="t"
+g="g"
+cd /home/kuldeep/Documents/iitb/iiitb/lexnyacc/PLY-programs/minor/$val
+python finals.py $val$t.py  $val1$g.py
